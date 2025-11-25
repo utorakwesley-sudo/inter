@@ -1,0 +1,315 @@
+<!DOCTYPE html>
+<html lang="ar" dir="rtl">
+  <head>
+    <meta charset="UTF-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+    <title>أخبار إنتر كبير إيطاليا</title>
+    <style>
+      body {
+        font-family: sans-serif;
+        margin: 0;
+        background: #0b0d12;
+        color: white;
+      }
+      header {
+        background: #001a33;
+        padding: 20px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+      }
+      header img {
+        height: 60px;
+      }
+      nav a {
+        color: white;
+        margin-left: 20px;
+        text-decoration: none;
+        font-size: 18px;
+        cursor: pointer;
+      }
+      section {
+        padding: 20px;
+      }
+      .card {
+        background: #12263a;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+      .match-box {
+        background: #12263a;
+        padding: 15px;
+        border-radius: 10px;
+        margin-bottom: 15px;
+      }
+      .match-box h3 {
+        margin: 0 0 10px;
+        color: #7dbbff;
+      }
+      .player,
+      .transfer {
+        padding: 10px;
+        background: #0d1b2a;
+        margin-bottom: 8px;
+        border-radius: 8px;
+      }
+      .player strong,
+      .transfer strong {
+        color: #4da3ff;
+      }
+      .home-main-image {
+        width: 100%;
+        max-height: 500px;
+        object-fit: cover;
+        border-radius: 10px;
+        margin-bottom: 15px;
+        border: 2px solid #4da3ff;
+      }
+      .home-images {
+        display: flex;
+        flex-wrap: wrap;
+        gap: 15px;
+        margin-top: 15px;
+      }
+      .home-images img {
+        width: 150px;
+        height: 150px;
+        object-fit: cover;
+        border-radius: 10px;
+        border: 2px solid #4da3ff;
+      }
+    </style>
+  </head>
+  <body>
+    <header>
+      <img src="inter-logo.png" alt="Inter Logo" />
+      <nav>
+        <a id="nav-home">الرئيسية</a>
+        <a id="nav-news">الأخبار</a>
+        <a id="nav-matches">المباريات</a>
+        <a id="nav-team">قائمة الفريق</a>
+        <a id="nav-transfers">الصفقات</a>
+      </nav>
+    </header>
+
+    <!-- الصفحة الرئيسية -->
+    <section id="page-home">
+      <h1>أخبار إنتر كبير إيطاليا</h1>
+      <div class="card">آخر الأخبار والمستجدات...</div>
+      <img src="inter210.jpg" alt="إنتر" class="home-main-image" />
+      <div class="home-images">
+        <img src="handanovic.jpg" alt="هاندانوفيتش" />
+        <img src="brozovic.jpg" alt="بروزوفيتش" />
+        <img src="lautaro.jpg" alt="لوتارو مارتينيز" />
+        <img src="barella.jpg" alt="باريلا" />
+      </div>
+    </section>
+
+    <!-- صفحة الأخبار -->
+    <section id="page-news" style="display: none">
+      <h1>أخبار إنتر</h1>
+      <div class="card">دومفريس سيغيب 4 أسابيع بسبب الإصابة.</div>
+      <div class="card">إنتر يواصل استعداداته لمواجهة أتلتيكو مدريد.</div>
+      <div class="card">تشكيلة الفريق المتوقعة لمباراة دوري أبطال أوروبا.</div>
+    </section>
+
+    <!-- صفحة المباريات -->
+    <section id="page-matches" style="display: none">
+      <h1>مباريات إنتر</h1>
+      <div class="match-box">
+        <h3>نتائج المباريات</h3>
+        <div id="past-matches"></div>
+      </div>
+      <div class="match-box">
+        <h3>المباريات القادمة</h3>
+        <div id="next-matches"></div>
+      </div>
+    </section>
+
+    <!-- صفحة قائمة الفريق -->
+    <section id="page-team" style="display: none">
+      <h1>قائمة الفريق</h1>
+      <div id="team-list"></div>
+    </section>
+
+    <!-- صفحة الصفقات -->
+    <section id="page-transfers" style="display: none">
+      <h1>الصفقات</h1>
+      <div class="match-box">
+        <h3>القادمين</h3>
+        <div id="transfers-in"></div>
+      </div>
+      <div class="match-box">
+        <h3>المغادرين</h3>
+        <div id="transfers-out"></div>
+      </div>
+    </section>
+
+    <script>
+      const recent = [
+        {
+          comp: "الدوري الإيطالي",
+          home: "إنتر",
+          away: "تورينو",
+          score: "5 - 0",
+          date: "2025-09-01",
+        },
+        {
+          comp: "الدوري الإيطالي",
+          home: "إنتر",
+          away: "أودينيزي",
+          score: "1 - 2",
+          date: "2025-09-07",
+        },
+        {
+          comp: "الدوري الإيطالي",
+          home: "يوفنتوس",
+          away: "إنتر",
+          score: "4 - 3",
+          date: "2025-09-14",
+        },
+        {
+          comp: "الدوري الإيطالي",
+          home: "إنتر",
+          away: "ساسولو",
+          score: "2 - 1",
+          date: "2025-09-21",
+        },
+        {
+          comp: "دوري أبطال أوروبا",
+          home: "أياكس",
+          away: "إنتر",
+          score: "0 - 2",
+          date: "2025-09-28",
+        },
+      ];
+
+      const upcoming = [
+        {
+          comp: "دوري أبطال أوروبا",
+          home: "أتلتيكو مدريد",
+          away: "إنتر",
+          date: "2025-11-26 22:45",
+        },
+        {
+          comp: "الدوري الإيطالي",
+          home: "بيزا",
+          away: "إنتر",
+          date: "2025-12-06 19:00",
+        },
+        {
+          comp: "دوري أبطال أوروبا",
+          home: "إنتر",
+          away: "ليفربول",
+          date: "2025-12-09 22:00",
+        },
+      ];
+
+      const team = [
+        { name: "يان سومر", position: "حارس مرمى" },
+        { name: "جوزيب مارتينيز", position: "حارس مرمى" },
+        { name: "رافاييلي دي جينارو", position: "حارس مرمى" },
+        { name: "أليسنادرو باستوني", position: "مدافع" },
+        { name: "فرانشيسكو أتشيربي", position: "مدافع" },
+        { name: "يان بيسك", position: "مدافع" },
+        { name: "ستيفان دي فريج", position: "مدافع" },
+        { name: "مانويل أكانجي", position: "مدافع" },
+        { name: "توماس بالاسيوس", position: "مدافع" },
+        { name: "فيديريكو ديماركو", position: "ظهير" },
+        { name: "باريلا", position: "لاعب وسط" },
+      ];
+
+      const transfersIn = [
+        { name: "ديفيدو دارميان", position: "مدافع" },
+        { name: "ريكاردو روبيو", position: "لاعب وسط" },
+        { name: "ماركو أنطونيو", position: "مهاجم" },
+      ];
+
+      const transfersOut = [
+        { name: "أليكسيس سانشيز", position: "مهاجم" },
+        { name: "ستيفان دي فريج", position: "مدافع" },
+        { name: "بروزاوفيتش", position: "لاعب وسط" },
+      ];
+
+      function renderMatches() {
+        let pastHTML = "";
+        recent.forEach((m) => {
+          pastHTML += `🔵 <strong>${m.comp}</strong><br>${m.home} ${m.score} ${m.away} — ${m.date}<br><br>`;
+        });
+        document.getElementById("past-matches").innerHTML = pastHTML;
+
+        let nextHTML = "";
+        upcoming.forEach((m) => {
+          nextHTML += `🔵 <strong>${m.comp}</strong><br>${m.home} × ${m.away} — ${m.date}<br><br>`;
+        });
+        document.getElementById("next-matches").innerHTML = nextHTML;
+      }
+
+      function renderTeam() {
+        let html = "";
+        team.forEach((p) => {
+          html += `<div class="player"><strong>${p.name}</strong> — ${p.position}</div>`;
+        });
+        document.getElementById("team-list").innerHTML = html;
+      }
+
+      function renderTransfers() {
+        let inHTML = "";
+        transfersIn.forEach((t) => {
+          inHTML += `<div class="transfer"><strong>${t.name}</strong> — ${t.position}</div>`;
+        });
+        document.getElementById("transfers-in").innerHTML = inHTML;
+
+        let outHTML = "";
+        transfersOut.forEach((t) => {
+          outHTML += `<div class="transfer"><strong>${t.name}</strong> — ${t.position}</div>`;
+        });
+        document.getElementById("transfers-out").innerHTML = outHTML;
+      }
+
+      document.getElementById("nav-home").addEventListener("click", () => {
+        document.getElementById("page-home").style.display = "block";
+        document.getElementById("page-news").style.display = "none";
+        document.getElementById("page-matches").style.display = "none";
+        document.getElementById("page-team").style.display = "none";
+        document.getElementById("page-transfers").style.display = "none";
+      });
+
+      document.getElementById("nav-news").addEventListener("click", () => {
+        document.getElementById("page-home").style.display = "none";
+        document.getElementById("page-news").style.display = "block";
+        document.getElementById("page-matches").style.display = "none";
+        document.getElementById("page-team").style.display = "none";
+        document.getElementById("page-transfers").style.display = "none";
+      });
+
+      document.getElementById("nav-matches").addEventListener("click", () => {
+        document.getElementById("page-home").style.display = "none";
+        document.getElementById("page-news").style.display = "none";
+        document.getElementById("page-matches").style.display = "block";
+        document.getElementById("page-team").style.display = "none";
+        document.getElementById("page-transfers").style.display = "none";
+        renderMatches();
+      });
+
+      document.getElementById("nav-team").addEventListener("click", () => {
+        document.getElementById("page-home").style.display = "none";
+        document.getElementById("page-news").style.display = "none";
+        document.getElementById("page-matches").style.display = "none";
+        document.getElementById("page-team").style.display = "block";
+        document.getElementById("page-transfers").style.display = "none";
+        renderTeam();
+      });
+
+      document.getElementById("nav-transfers").addEventListener("click", () => {
+        document.getElementById("page-home").style.display = "none";
+        document.getElementById("page-news").style.display = "none";
+        document.getElementById("page-matches").style.display = "none";
+        document.getElementById("page-team").style.display = "none";
+        document.getElementById("page-transfers").style.display = "block";
+        renderTransfers();
+      });
+    </script>
+  </body>
+</html>
